@@ -263,8 +263,9 @@
 			* Use class "bg-image-scroll-horizontal" or "bg-image-scroll-vertical" to enable background image scrolling animation (otherwise use class "bg-image" or "bg-image-fixed").
 			* Use class "full-page" to enable fullscreen intro.
 			-->
-			<section id="intro-section" class="full-page bg-image-scroll-vertical" style="background-image: url(assets/img/scrolling-bg.jpg); background-position: 50% 20%;">
-
+			<div id="section-bg">
+			<section id="intro-section" class="full-page bg-image-scroll-vertical"  background-position: 50% 20%;">
+			</div>
 				<!-- Element cover -->
 				<div class="cover bg-transparent-6-dark"></div>
 
@@ -374,7 +375,13 @@
         <script src="assets/custom/parsley.min.js"></script>
         <script src="assets/custom/mustache.min.js"></script>
         <script src="assets/custom/myapp.js"></script>
+<script>
+$(document).ready(function () {
+	initIndex();
 
+
+});
+</script>
 
 		<!--==============================
 		///// Begin Google Analytics /////
