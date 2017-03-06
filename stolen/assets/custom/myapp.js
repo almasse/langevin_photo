@@ -14,7 +14,6 @@ var getUrlParameter = function getUrlParameter(sParam) {
 };
 
 
-
 function initAlbumList(){
 
 	
@@ -66,6 +65,30 @@ function initAlbumList(){
     	});
     });
 }
+
+function initAlbumDetail(id){
+
+    $.getJSON("http://localhost:8000/api/v2/pages/"+id+"/?format=json", function (page_data) {
+      /*  var template = $('#template-albumdetail').html();
+        var rendered = Mustache.render(template, page_data);
+        $('#albumdetail').html(rendered);
+	*/
+		$('#albumtitle').text(page_data.title);
+
+		for (var key in page_data.photos){
+			var template = $('#template-albumdetail').html();
+        	var rendered = Mustache.render(template, page_data.photos[key]);
+        	$('#gallery').append(rendered);
+
+		}
+
+
+    });
+
+}
+
+
+
 
 
 function initIndex(){
