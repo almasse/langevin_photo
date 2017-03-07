@@ -74,6 +74,11 @@ function initAlbumDetail(id){
         $('#albumdetail').html(rendered);
 	*/
 		$('#albumtitle').text(page_data.title);
+		$('#bodynothidden').text(page_data.body);
+		$('#bodyhidden').text(page_data.body_cacher);
+		$('#nextbutton').attr('href','album-detail.html?code='+id+'&way=next');
+		$('#prevbutton').attr('href','album-detail.html?code='+id+'&way=prev');
+
 
 		for (var key in page_data.photos){
 			var template = $('#template-albumdetail').html();
@@ -81,15 +86,8 @@ function initAlbumDetail(id){
         	$('#gallery').append(rendered);
 
 		}
-
-
     });
-
 }
-
-
-
-
 
 function initIndex(){
     $.getJSON("http://localhost:8000/api/v2/pages/3/?format=json", function (page_data) {
@@ -126,8 +124,8 @@ function initAbout(){
 
             var template = $('#template-about').html();
             var rendered = Mustache.render(template, page_data);
-        
             $('#about').html(rendered);
+
             $('#abouttitle').text(page_data.title)
 
         });
@@ -135,3 +133,39 @@ function initAbout(){
     });
 }
 
+function closestHigh(arr, closestTo){
+    var closest = Math.max.apply(null, arr); //Get the highest number in arr in case it match nothing.
+    for(var i = 0; i < arr.length; i++){ //Loop the array
+        if(arr[i] > closestTo && arr[i] < closest) closest = arr[i]; //Check if it's higher than your number, but lower than your closest value
+    }
+    return closest; // return the value
+}
+
+function closestDown(arr, closestTo){
+    var closest = Math.min.apply(null, arr); //Get the smallest number in arr in case it match nothing.
+    for(var i = 0; i < arr.length; i++){ //Loop the array
+        if(arr[i] < closestTo && arr[i] > closest) closest = arr[i]; //Check if it's higher than your number, but lower than your closest value
+    }
+    return closest; // return the value
+}
+
+
+function nextAlbum(currentid, way){
+	console.log("NEXT");
+    $.getJSON("http://localhost:8000/api/v2/pages/?format=json", function (pages) {
+    	var albums = [];
+    	for (var key in pages.items){
+            if (pages.items[key].meta.type == "langevin_photo.AlbumPage"){
+                albums.push(pages.items[key].id);
+            }
+        }
+        if (way == 'next'){
+        	var next = closestHigh(albums, currentid);
+        	initAlbumDetail(next);
+        }
+        if (way == 'prev'){
+        	var prev = closestDown(albums, currentid);
+        	initAlbumDetail(prev);
+        }
+    });
+}

@@ -732,12 +732,12 @@
 
 							<!-- Begin album description -->
 							<div class="album-description">
-								<div class="al-desc-inner">
-									<p>Suspendisse metus urna, faucibus nec ex et, suscipit blandit turpis. Suspendisse maximus sodales sem aliquet vehicula. Vivamus augue felis, finibus ut augue in, condimentum malesuada metus navesis.</p>
+								<div class="al-desc-inner" >
+									<p id="bodynothidden">Suspendisse metus urna, faucibus nec ex et, suscipit blandit turpis. Suspendisse maximus sodales sem aliquet vehicula. Vivamus augue felis, finibus ut augue in, condimentum malesuada metus navesis.</p>
 
 									<!-- Begin description toggle (hidden by default) -->
 									<div class="al-desc-toggle">
-										<p>Praesent ultricies interdum augue sit amet tempor. Maecenas at ultricies arcu. Sed lacinia vulputate nulla, a sollicitudin turpis varius quis. Pellentesque vulputate pellentesque.</p>
+										<p id="bodyhidden">Praesent ultricies interdum augue sit amet tempor. Maecenas at ultricies arcu. Sed lacinia vulputate nulla, a sollicitudin turpis varius quis. Pellentesque vulputate pellentesque.</p>
 									</div>
 									<!-- End description toggle -->
 								</div>
@@ -760,7 +760,7 @@
 							<div class="album-nav">
 
 								<!-- Begin album nav item -->
-								<a href="" class="an-item prev-album bg-image" style="background-image: url(assets/img/album-list/grid/img-2.jpg); background-position: 50% 50%;" title="Previous album">
+								<a id="prevbutton" href="" class="an-item prev-album bg-image" style="background-image: url(assets/img/album-list/grid/img-2.jpg); background-position: 50% 50%;" title="Previous album">
 									<!-- Element cover -->
 									<div class="cover"></div>
 
@@ -772,7 +772,7 @@
 								<!-- End album nav item -->
 
 								<!-- Begin album nav item -->
-								<a href="album-list-grid-4col.html" class="an-item to-album-list bg-image" style="background-image: url(assets/img/album-list/grid/img-4.jpg); background-position: 50% 50%;" title="Back to album list">
+								<a href="portfolio.html" class="an-item to-album-list bg-image" style="background-image: url(assets/img/album-list/grid/img-4.jpg); background-position: 50% 50%;" title="Back to album list">
 									<!-- Element cover -->
 									<div class="cover"></div>
 
@@ -784,7 +784,7 @@
 								<!-- End album nav item -->
 
 								<!-- Begin album nav item -->
-								<a href="" class="an-item next-album bg-image" style="background-image: url(assets/img/album-list/grid/img-7.jpg); background-position: 50% 50%;" title="Next album">
+								<a id="nextbutton" href="" class="an-item next-album bg-image" style="background-image: url(assets/img/album-list/grid/img-7.jpg); background-position: 50% 50%;" title="Next album">
 									<!-- Element cover -->
 									<div class="cover"></div>
 
@@ -1130,8 +1130,18 @@
 
   <script>
 $(document).ready(function () {
-  var code = getUrlParameter('code');
-    initAlbumDetail(code);
+  	var code = getUrlParameter('code');
+  	if (getUrlParameter('way')){
+  		var way = getUrlParameter('way');
+  		if(way=='prev'){
+  			nextAlbum(code,'prev');
+  		}
+  		if(way=='next'){
+			nextAlbum(code,'next');
+  		}
+  	}else{
+    	initAlbumDetail(code);
+	}
 });
   </script>
 		<!--==============================

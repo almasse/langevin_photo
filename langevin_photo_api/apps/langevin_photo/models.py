@@ -76,7 +76,8 @@ class Categorie(Orderable):
 
 
 class AlbumPage(Page):
-    body = RichTextField(blank=True)
+    body = models.CharField(max_length=150)
+    body_cacher = models.CharField(max_length=150,null=True, blank=True)
     categorie = models.ForeignKey(Categorie, null=True, blank=True)
     photo = models.ForeignKey(
         'wagtailimages.Image',
@@ -86,7 +87,7 @@ class AlbumPage(Page):
         related_name='+'
     )
 
-    api_fields = ['photos','body','photo','photo_url', 'categorie']
+    api_fields = ['photos','body','photo','photo_url', 'categorie','body_cacher']
     
     parent_page_types = ['langevin_photo.AlbumListPage']
     subpage_types = []
@@ -94,6 +95,7 @@ class AlbumPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('categorie'),
         FieldPanel('body'),
+        FieldPanel('body_cacher'),
         FieldPanel('photo'),
         InlinePanel('photos', label="Photos"),
     ]
