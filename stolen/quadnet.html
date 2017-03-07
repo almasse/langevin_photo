@@ -147,7 +147,7 @@
 								* Use class "dropdown-menu-right" to right align the dropdown menu.
 								* Use class "dropdown-menu-dark" to enable dark dropdown menu.
 								-->
-								<li class="dropdown dropdown-hover active">
+								<li class="dropdown dropdown-hover">
 									<a href="#0" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gallery <span class="caret-2"><i class="fa fa-chevron-down"></i></span></a>
 									<ul class="dropdown-menu">
 										
@@ -156,7 +156,7 @@
 										* Use class "dropdown-hover" to make navigation toggle on desktop hover.
 										* Use class "dropdown-menu-dark" to enable dark dropdown menu.
 										-->
-										<li class="dropdown dropdown-submenu dropdown-hover active">
+										<li class="dropdown dropdown-submenu dropdown-hover">
 											<a href="#0" class="dropdown-toggle keep-inside-screen" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Album List <span class="caret-2"><i class="fa fa-chevron-right"></i></span></a>
 											<ul class="dropdown-menu">
 
@@ -169,11 +169,11 @@
 												* Use class "dropdown-hover" to make navigation toggle on desktop hover.
 												* Use class "dropdown-menu-dark" to enable dark dropdown menu.
 												-->
-												<li class="dropdown dropdown-submenu dropdown-hover active">
+												<li class="dropdown dropdown-submenu dropdown-hover">
 													<a href="#0" class="dropdown-toggle keep-inside-screen" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Grid <span class="caret-2"><i class="fa fa-chevron-right"></i></span></a>
 													<ul class="dropdown-menu">
 														<li><a href="album-list-grid-3col.html">3 Columns</a></li>
-														<li class="active"><a href="album-list-grid-4col.html">4 Columns</a></li>
+														<li><a href="album-list-grid-4col.html">4 Columns</a></li>
 														<li><a href="album-list-grid-5col.html">5 Columns</a></li>
 														<li><a href="album-list-grid-6col.html">6 Columns</a></li>
 														<li><a href="album-list-grid-no-gutter.html">No Gutter</a></li>
@@ -435,10 +435,10 @@
 								* Use class "dropdown-menu-right" to right align the dropdown menu.
 								* Use class "dropdown-menu-dark" to enable dark dropdown menu.
 								-->
-								<li class="dropdown dropdown-hover">
+								<li class="dropdown dropdown-hover active">
 									<a href="#0" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages <span class="caret-2"><i class="fa fa-chevron-down"></i></span></a>
 									<ul class="dropdown-menu">
-										<li><a href="page-about-me.html">About Me</a></li>
+										<li class="active"><a href="page-about-me.html">About Me</a></li>
 										<li><a href="page-about-us.html">About Us</a></li>
 										<li><a href="page-faq.html">FAQ</a></li>
 										<li><a href="page-login-register.html">Login/Register</a></li>
@@ -700,40 +700,113 @@
 				===============================
 				* Use class "parallax" to enable parallax effect.
 				-->
-				<div id="backgroundimage" class="page-header-image parallax bg-image" style="background-position: 50% 50%;"></div>
+				<div class="page-header-image parallax bg-image" style="background-image: url(assets/img/headings/heading-6.jpg); background-position: 50% 70%;"></div>
 				<!-- End page header image -->
 
 				<!-- Element cover -->
 				<div class="cover page-header-cover"></div>
 
 				<!-- Begin page header info -->
-				<div class="container-fluid page-header-content no-padding text-center">
+				<div class="container page-header-content no-padding max-width-800 text-center">
 					<div class="row">
-						<div class="col-md-12" id="templatetitle">
+						<div class="col-lg-12">
 
-							<h1 class="album-title">Albums</h1>
+							<h1 id="quadtitle" class="album-title">About Me</h1>
+				<!--			<ol class="breadcrumb">
+								<li><a href="index.html">Home</a></li>
+								<li class="active">Page - About Me</li>
+							</ol>-->
 
 						</div> <!-- /.col -->
 					</div> <!-- /.row -->
 				</div> 
 				<!-- End page header info -->
-				<script id="template-title" type="x-tmpl-mustache">
-                   <h1 class="album-title">{{title}}</h1>
-                </script>
+
 			</section>
 			<!-- End page header section -->
 
 
-			<!-- ============================
-			///// Begin content section /////
-			============================= -->
-			<section id="content-section">
-				<div class="container-fluid">
+			<!-- ================================
+			/////// Begin content section ///////
+			================================= -->
+			<section id="content-section" class="page page-about-me">
+
+				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
 
 							<!-- Begin content wrap -->
 							<div class="content-wrap">
+								<div id="quad" class="row">
+									<div class="col-md-8">
+
+										<h3>John Smith</h3>
+										<h6>Photographer / Designer</h6>
+
+										<p>Integer nec rhoncus lacus. Vestibulum suscipit tristique cursus. Nunc tempor, leo ornare dignissim laoreet, ex ligula imperdiet metus, a pellentesque lectus sem eu nunc. Donec malesuada id velit eget laoreet. Nullam posuere diam nec dolor volutpat bibendum. Aliquam efficitur id sapien in feugiat.</p>
+
+										<blockquote>
+											Neque sit amet mauris egestas quis mattis velit fringilla. Curabitur viver justo sed scelerisque. Cras consectetur purus sit amet fermentum. Aenean mattis eu leo quam curcus.
+										</blockquote>
+
+										<div class="social-icons margin-top-40 margin-bottom-30">
+											<h6 class="head">Find me on:</h6>
+											<ul>
+												<li><a target="_blank" href="https://www.facebook.com" title="Follow me on Facebook"><i class="fa fa-facebook"></i></a></li>
+												<li><a target="_blank" href="https://twitter.com/" title="Follow me on Twitter"><i class="fa fa-twitter"></i></a></li>
+												<li><a target="_blank" href="https://www.pinterest.com" title="Follow me on Pinterest"><i class="fa fa-pinterest"></i></a></li>
+												<li><a target="_blank" href="https://www.instagram.com" title="Follow me on Instagram"><i class="fa fa-instagram"></i></a></li>
+												<!-- shange "your@email.com" to your email -->
+												<li><a target="_blank" href="mailto:your@email.com" title="Contact me"><i class="fa fa-envelope"></i></a></li>
+											</ul>
+										</div>
+
+									</div> <!-- /.col -->
+
+									<div class="col-md-4">
+										
+										<img src="assets/img/team/team-1.jpg" alt="image">
+
+									</div> <!-- /.col -->
+								</div> <!-- /.row -->
+							</div>
+							<!-- End content wrap -->
+
+                <script id="template-quad" type="x-tmpl-mustache">
+									<div class="col-md-8">
+
+										<h3>{{name}}</h3>
+									<!--	<h6>Photographer / Designer</h6> -->
+
+										<p>{{{body}}}</p>
+
+										<blockquote>
+											<a href="{{pdf.meta.download_url}}">{{titre_pdf}}</a>
+										</blockquote>
+
+										<div class="social-icons margin-top-40 margin-bottom-30">
+											<h6 class="head">Find me on:</h6>
+											<ul>
+												<li><a target="_blank" href="https://www.facebook.com" title="Follow me on Facebook"><i class="fa fa-facebook"></i></a></li>
+												<li><a target="_blank" href="https://twitter.com/" title="Follow me on Twitter"><i class="fa fa-twitter"></i></a></li>
+												<li><a target="_blank" href="https://www.pinterest.com" title="Follow me on Pinterest"><i class="fa fa-pinterest"></i></a></li>
+												<li><a target="_blank" href="https://www.instagram.com" title="Follow me on Instagram"><i class="fa fa-instagram"></i></a></li>
+												<!-- shange "your@email.com" to your email -->
+												<li><a target="_blank" href="mailto:your@email.com" title="Contact me"><i class="fa fa-envelope"></i></a></li>
+											</ul>
+										</div>
+
+									</div> <!-- /.col -->
+
+									<div class="col-md-4">
+										
+										<img src="http://localhost:8000{{ photo_url }}" alt="image">
+
+									</div> <!-- /.col -->
+                </script>
+
+
+<div class="content-wrap">
 
 								<!-- Begin isotope
 								===================
@@ -746,57 +819,84 @@
 									<div class="gallery-top-content">
 
 										<div class="row margin-bottom-40">
-											<div class="col-md-8">
+											<div class="col-xs-4">
 
-												<!-- Begin isotope filter -->
-												<div class="isotope-filter">
-
-													<!-- Begin isotope filter toggle button -->
-													<div class="navbar-header visible-xs">
-														<button type="button" class="navbar-toggle collapsed filter-toggle-btn" data-toggle="collapse" data-target="#isotope-filter-collapse">
-															<span class="text-center">Filter <i class="fa fa-chevron-down"></i></span>
-														</button>
-													</div>
-													<!-- End isotope filter toggle button -->
-
-													<h2 class="filter-heading">Filtres</h2>
-
-													<!-- Begin isotope filter links -->
-													<div class="isotope-filter-links collapse navbar-collapse no-padding" id="isotope-filter-collapse">
-														<a class="active" href="#" data-filter="*">Tous</a>
-													<!--	<a href="#" data-filter=".fashion">Fashion</a>
-														<a href="#" data-filter=".portraits">Portraits</a>
-														<a href="#" data-filter=".black-and-white">Black &amp; White</a>
-														<a href="#" data-filter=".outdoor">Outdoor</a> -->
-													</div>
-													<!-- End isotope filter links -->
-
+												<!-- Begin columns switch -->
+												<div class="columns-switch">
+													<a href="#0" class="lsw-1" title="Columns switch"><i class="fa fa-th"></i></a>
+													<a href="#0" class="lsw-2" title="Columns switch"><i class="fa fa-th-large"></i></a>
 												</div>
-												<!-- End isotope filter -->
-												
+												<!-- End columns switch -->
+
 											</div> <!-- /.col -->
 
-											<div class="col-md-4">
+											<div class="col-xs-8">
 
 												<!-- Begin album attributes -->
-												<ul class="album-attributes margin-top-30 hide-from-md">
+												<ul class="album-attributes">
 
 													<!-- Begin show items on page
 													==============================
 													* Use class "options-dark" to enable dark dropdown menu.
 													-->
-													<li><form class="form-inline show-on-page">
-														<div class="form-group">
-															<label for="show-items">Show:</label>
-															<select id="show-items" class="select-styled">
-																<option value="show-15-items">15 items</option>
-																<option value="show-25-items">25 items</option>
-																<option value="show-50-items">50 items</option>
-																<option value="show-all-items">Show All</option>
-															</select>
-														</div>
-													</form></li>
+													<li class="hide-from-md">
+														<form class="form-inline show-on-page margin-right-15">
+															<div class="form-group">
+																<label for="show-items">Show:</label>
+																<select id="show-items" class="select-styled">
+																	<option value="show-15-items">15 items</option>
+																	<option value="show-25-items">25 items</option>
+																	<option value="show-50-items">50 items</option>
+																	<option value="show-all-items">Show All</option>
+																</select>
+															</div>
+														</form>
+													</li>
 													<!-- End show items on page -->
+													
+													<!-- Begin album share -->
+													<li>
+														<a href="#0" class="al-at-link album-share" title="Share this album" data-toggle="modal" data-target="#modal-98545043">
+															<span class="al-at-icon"><i class="fa fa-share-alt"></i></span>
+															<span class="al-at-text hide-from-xs">Share</span>
+														</a>
+
+														<!-- Begin album share modal -->
+														<div id="modal-98545043" class="modal fade" tabindex="-1" role="dialog">
+															<div class="modal-dialog modal-center">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																		<h4 class="modal-title">Share to:</h4>
+																	</div>
+																	<div class="modal-body text-center">
+																		<!-- Begin modal share -->
+																		<div class="modal-share">
+																			<ul>
+																				<li><a href="#0" class="btn btn-social-min btn-facebook btn-rounded-full"><i class="fa fa-facebook"></i></a></li>
+																				<li><a href="#0" class="btn btn-social-min btn-twitter btn-rounded-full"><i class="fa fa-twitter"></i></a></li>
+																				<li><a href="#0" class="btn btn-social-min btn-google btn-rounded-full"><i class="fa fa-google-plus"></i></a></li>
+																				<li><a href="#0" class="btn btn-social-min btn-pinterest btn-rounded-full"><i class="fa fa-pinterest"></i></a></li>
+																				<li><a href="#0" class="btn btn-social-min btn-instagram btn-rounded-full"><i class="fa fa-instagram"></i></a></li>
+																			</ul>
+																			<input class="grab-link" type="text" readonly="" value="https://your-site.com/your-album-link" onclick="this.select()">
+																		</div>
+																		<!-- End modal share -->
+																	</div>
+																</div><!-- /.modal-content -->
+															</div><!-- /.modal-dialog -->
+														</div>
+														<!-- End album share modal -->
+
+													</li>
+													<!-- End album share -->
+
+													<!-- Begin download album link -->
+													<li><a href="assets/download/download-album-demo.zip" class="al-at-link album-download margin-left-15" title="Download this album" download="my-awesome-album">
+														<span class="al-at-icon"><i class="fa fa-download"></i></span>
+														<span class="al-at-text hide-from-xs">Download</span>
+													</a></li>
+													<!-- End download album link -->
 													
 												</ul>
 												<!-- End album attributes -->
@@ -806,184 +906,82 @@
 
 									</div>
 									<!-- End gallery top content -->
+									
 
-
-									<!-- Begin isotope items (album list items) 
-									============================================= 
-									* Use class "caption-gradient" to enable gradient caption.
-									* Use class "caption-outside" to enable caption outside.
-									* Use class "caption-dark" to enable dark caption (no effect if "caption-gradient" or "caption-outside" is used).
-									* Use class "caption-boxed" to enable boxed caption (no effect if "caption-gradient" or "caption-outside" is used).
-									* Use class "caption-sm", "caption-lg" or "caption-xlg" to change caption size.
-									* Use classes "ali-style-1", "ali-style-2" to change album list item style (no effect if "gutter-1" is used).
-									* Note: For grid layout make sure that your images are the same dimensions.
-									* Note: For masonry layout make sure that your images are the different dimensions.
+									<!-- Begin isotope items (album single items)
+									=============================================== 
+									* Use classes "hover-center", "hover-boxed", "hover-dark", "hover-simple" to change album single item hover variations.
+									* Note1: For grid layout make sure that your images are the same dimensions.
+									* Note2: For masonry layout make sure that your images are the different dimensions.
 									-->
-									<div class="isotope-items-wrap ali-style-1 caption-gradient" id="albums-list">
+									<div id="gallery" class="isotope-items-wrap lightgallery hover-center hover-boxed">
 
 										<!-- Grid sizer (do not remove!!!) -->
 										<div class="grid-sizer"></div>
 
-
 										<!-- //////////////////
-										// Begin isotope item. Note: use class "width2" for alternative item width (works best on first item)
+										// Begin isotope item. Note: use class "width2" for alternative item width (works best on first item).
 										/////////////////////// 
-										<div class="isotope-item fashion">
+										<div class="isotope-item">
 
-											<!-- Begin album list item
-											<div class="album-list-item">
-												<a class="ali-link" href="album-single-grid-4col.html">
-													<div class="ali-img-wrap">
-														<img class="ali-img" src="assets/img/album-list/grid/img-1.jpg" alt="image">
-													</div>
-													<div class="ali-caption">
-														<h2 class="ali-title">Paris Fashion Week</h2>
-														<div class="ali-meta">15 photos · 134 views</div>
-													</div>
-												</a>
-												<a href="#0" class="album-share" title="Share this album" data-toggle="modal" data-target="#modal-45776355">
-													<i class="fa fa-share-alt"></i>
-												</a>
-
-												<!-- Begin album share modal 
-												<div id="modal-45776355" class="modal fade" tabindex="-1" role="dialog">
-													<div class="modal-dialog modal-center">
-														<div class="modal-content">
-															<div class="modal-header">
-																<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-																<h4 class="modal-title">Share to:</h4>
-															</div>
-															<div class="modal-body text-center">
-																<!-- Begin modal share 
-																<div class="modal-share">
-																	<ul>
-																		<li><a href="#0" class="btn btn-social-min btn-facebook btn-rounded-full"><i class="fa fa-facebook"></i></a></li>
-																		<li><a href="#0" class="btn btn-social-min btn-twitter btn-rounded-full"><i class="fa fa-twitter"></i></a></li>
-																		<li><a href="#0" class="btn btn-social-min btn-google btn-rounded-full"><i class="fa fa-google-plus"></i></a></li>
-																		<li><a href="#0" class="btn btn-social-min btn-pinterest btn-rounded-full"><i class="fa fa-pinterest"></i></a></li>
-																		<li><a href="#0" class="btn btn-social-min btn-instagram btn-rounded-full"><i class="fa fa-instagram"></i></a></li>
-																	</ul>
-																	<input class="grab-link" type="text" readonly="" value="https://your-site.com/your-album-link" onclick="this.select()">
-																</div>
-																<!-- End modal share 
-															</div>
-														</div><!-- /.modal-content 
-													</div><!-- /.modal-dialog 
+											<!-- Begin album single item 
+											<div class="album-single-item">
+												<img class="asi-img" src="assets/img/album-single/grid/img-1.jpg" alt="image">
+												<!-- Begin item cover 
+												<div class="asi-cover">
+													<a class="asi-link lg-trigger" href="assets/img/album-single/big/img-1.jpg" data-exthumbnail="assets/img/album-single/thumb/img-1.jpg" data-sub-html="<h4>Lana Melray</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>">
+														<div class="asi-info">
+															<span class="s-icon"><i class="fa fa-search"></i></span>
+														</div>
+													</a>
 												</div>
-												<!-- End album share modal 
-
+												<!-- End item cover 
 											</div>
-											<!-- End album list item 
+											<!-- End album single item 
 
 										</div>
 										<!-- End isotope item -->
 
+										<!-- //////////////////
+										// Begin isotope item
+										/////////////////////// -->
+
 
 									</div>
 									<!-- End isotope items wrap -->
-				<script id="template-albums-list" type="x-tmpl-mustache">
-										<div id="item-album{{id}}" class="isotope-item">
+                <script id="template-albumdetail" type="x-tmpl-mustache">
+                	
+										<div class="isotope-item">
 
-											<!-- Begin album list item -->
-											<div class="album-list-item">
-												<a class="ali-link" href="album-detail.html?code={{id}}">
-													<div class="ali-img-wrap">
-														<img id="photoid{{id}}" class="ali-img" src="" alt="image">
-													</div>
-													<div class="ali-caption">
-														<h2 class="ali-title">{{title}}</h2>
-														<div class="ali-meta">15 photos · 134 views</div>
-													</div>
-												</a>
-												<a href="#0" class="album-share" title="Share this album" data-toggle="modal" data-target="#modal-22988965">
-													<i class="fa fa-share-alt"></i>
-												</a>
-
-												<!-- Begin album share modal -->
-												<div id="modal-{{id}}" class="modal fade" tabindex="0" role="dialog">
-													<div class="modal-dialog modal-center">
-														<div class="modal-content">
-															<div class="modal-header">
-																<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-																<h4 class="modal-title">Share to:</h4>
-															</div>
-															<div class="modal-body text-center">
-																<!-- Begin modal share -->
-																<div class="modal-share">
-																	<ul>
-																		<li><a href="#0" class="btn btn-social-min btn-facebook btn-rounded-full"><i class="fa fa-facebook"></i></a></li>
-																		<li><a href="#0" class="btn btn-social-min btn-twitter btn-rounded-full"><i class="fa fa-twitter"></i></a></li>
-																		<li><a href="#0" class="btn btn-social-min btn-google btn-rounded-full"><i class="fa fa-google-plus"></i></a></li>
-																		<li><a href="#0" class="btn btn-social-min btn-pinterest btn-rounded-full"><i class="fa fa-pinterest"></i></a></li>
-																		<li><a href="#0" class="btn btn-social-min btn-instagram btn-rounded-full"><i class="fa fa-instagram"></i></a></li>
-																	</ul>
-																	<input class="grab-link" type="text" readonly="" value="https://your-site.com/your-album-link" onclick="this.select()">
-																</div>
-																<!-- End modal share -->
-															</div>
-														</div><!-- /.modal-content -->
-													</div><!-- /.modal-dialog -->
+											<!-- Begin album single item -->
+											<div class="album-single-item">
+												<img class="asi-img" src="http://localhost:8000{{ photo_url }}" alt="image">
+												<!-- Begin item cover -->
+												<div class="asi-cover">
+													<a class="asi-link lg-trigger" href="http://localhost:8000{{ photo_url }}" data-exthumbnail="http://localhost:8000{{ photo_url }}">
+														<div class="asi-info">
+															<!--<span class="s-icon"><i class="fa fa-search"></i></span>-->
+														</div>
+													</a>
 												</div>
-												<!-- End album share modal -->
-
+												<!-- End item cover -->
 											</div>
-											<!-- End album list item -->
+											<!-- End album single item -->
 
 										</div>
+					
                 </script>
 								</div>
 								<!-- End isotope -->
 
 							</div>
 							<!-- End content wrap -->
-							
+
+                
 						</div> <!-- /.col -->
-					</div> <!-- /.row 
-
-					<div class="row">
-						<div class="col-md-8">
-
-							<!-- Begin pagination 
-							<nav class="pagination-wrap">
-								<ul class="pagination">
-									<li>
-										<a href="" aria-label="Previous">
-											<span aria-hidden="true">First</span>
-										</a>
-									</li>
-									<li><a href="">Prev</a></li>
-									<li class="active"><a href="#0">1</a></li>
-									<li><a href="">2</a></li>
-									<li><a href="">3</a></li>
-									<li><a href="#0">...</a></li>
-									<li><a href="">6</a></li>
-									<li><a href="">7</a></li>
-									<li><a href="">8</a></li>
-									<li><a href="">Next</a></li>
-									<li>
-										<a href="" aria-label="Next">
-											<span aria-hidden="true">Last</span>
-										</a>
-									</li>
-								</ul>
-							</nav>
-							<!-- End pagination 
-
-						</div> <!-- /.col 
-
-						<div class="col-md-4">
-
-							<!-- Begin pagination info 
-							<div class="pagination-info ">
-								<span>Showing page 1 of 8</span>
-								<span>Albums 1 - 12 of 94</span>
-							</div>
-							<!-- End pagination info 
-
-						</div> <!-- /.col 
 					</div> <!-- /.row -->
-
 				</div> <!-- /.container -->
+
 			</section>
 			<!-- End content section -->
 
@@ -1062,14 +1060,14 @@
         <script src="assets/custom/myapp.js"></script>
 <script>
 $(document).ready(function () {
-	initAlbumList();
+	initQuad();
 });
 </script>
 
 		<!--==============================
 		///// Begin Google Analytics /////
-		============================== -->
-<!--
+		============================== 
+
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -1080,7 +1078,7 @@ $(document).ready(function () {
 			ga('send', 'pageview');
 
 		</script>
--->
+
 		<!--==============================
 		///// End Google Analytics /////
 		============================== -->

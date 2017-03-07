@@ -134,6 +134,46 @@ function initAbout(){
     });
 }
 
+function initQuad(){
+    var quadpageids = [];
+    var quad = 0 ;
+    $.getJSON("http://localhost:8000/api/v2/pages/?format=json", function (data) {
+        
+        for (var key in data.items){
+            if (data.items[key].meta.type == "langevin_photo.QuadPage"){
+                quadpageids.push(data.items[key].id);
+            }
+        }
+        quadpageids.sort(function(a,b){
+            return b-a;
+        });
+        for (var id in quadpageids){
+            quad = quadpageids[id];
+            break;
+        }
+
+        $.getJSON("http://localhost:8000/api/v2/pages/"+quad+"/?format=json", function (page_data) {
+        	page_data.pdf.meta.download_url = page_data.pdf.meta.download_url.replace('localhost','localhost:8000');
+            var template = $('#template-quad').html();
+            var rendered = Mustache.render(template, page_data);
+            $('#quad').html(rendered);
+
+            $('#quadtitle').text(page_data.title)
+
+			for (var key in page_data.quadphotos){
+				var template = $('#template-albumdetail').html();
+        		var rendered = Mustache.render(template, page_data.quadphotos[key]);
+        		$('#gallery').append(rendered);
+
+			}
+
+        });
+
+    });
+}
+
+
+
 function closestHigh(arr, closestTo){
     var closest = Math.max.apply(null, arr); //Get the highest number in arr in case it match nothing.
     for(var i = 0; i < arr.length; i++){ //Loop the array

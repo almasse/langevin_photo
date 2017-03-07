@@ -155,3 +155,61 @@ class AboutPage(Page):
     def photo_url(self):
         if self.photo:
             return settings.MEDIA_URL + 'original_images/' + self.photo.filename
+
+
+class QuadPage(Page):
+    body = RichTextField(blank=True)
+    name = models.CharField(max_length=100)
+    photo = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    titre_pdf = models.CharField(max_length=100,null=True,blank=True)
+    pdf = models.ForeignKey(
+        'wagtaildocs.Document',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    api_fields = ['body','photo','photo_url','name','quadphotos','pdf','titre_pdf']
+
+    content_panels = Page.content_panels + [
+        FieldPanel('name'),
+        FieldPanel('body'),
+        FieldPanel('pdf'),
+        FieldPanel('titre_pdf'),
+        FieldPanel('photo'),
+        InlinePanel('quadphotos', label="Photos"),
+    ]
+
+
+    @property
+    def photo_url(self):
+        if self.photo:
+            return settings.MEDIA_URL + 'original_images/' + self.photo.filename
+
+class QuadPhoto(Orderable):
+    page = ParentalKey(QuadPage, related_name='quadphotos')
+    photo = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    api_fields = ['photo', 'photo_url']
+
+    panels = [
+        FieldPanel('photo'),
+    ]
+
+    @property
+    def photo_url(self):
+        if self.photo:
+            return settings.MEDIA_URL + 'original_images/' + self.photo.filename
