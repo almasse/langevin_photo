@@ -78,7 +78,8 @@ function initAlbumDetail(id){
 		$('#bodyhidden').text(page_data.body_cacher);
 		$('#nextbutton').attr('href','album-detail.html?code='+id+'&way=next');
 		$('#prevbutton').attr('href','album-detail.html?code='+id+'&way=prev');
-
+		$('#downnextbutton').attr('href','album-detail.html?code='+id+'&way=next');
+		$('#downprevbutton').attr('href','album-detail.html?code='+id+'&way=prev');
 
 		for (var key in page_data.photos){
 			var template = $('#template-albumdetail').html();
