@@ -157,6 +157,33 @@ class AboutPage(Page):
             return settings.MEDIA_URL + 'original_images/' + self.photo.filename
 
 
+class TarifPage(Page):
+    body = RichTextField(blank=True)
+    name = models.CharField(max_length=100)
+    quote = models.CharField(max_length=255)
+    photo = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    api_fields = ['body','photo','photo_url','name','quote']
+
+    content_panels = Page.content_panels + [
+        FieldPanel('name'),
+        FieldPanel('body'),
+        FieldPanel('quote'),
+        FieldPanel('photo'),
+    ]
+
+    @property
+    def photo_url(self):
+        if self.photo:
+            return settings.MEDIA_URL + 'original_images/' + self.photo.filename
+
+
 class QuadPage(Page):
     body = RichTextField(blank=True)
     name = models.CharField(max_length=100)
@@ -207,6 +234,63 @@ class QuadPhoto(Orderable):
 
     panels = [
         FieldPanel('photo'),
+    ]
+
+    @property
+    def photo_url(self):
+        if self.photo:
+            return settings.MEDIA_URL + 'original_images/' + self.photo.filename
+
+
+
+
+class SellPage(Page):
+    body = models.CharField(max_length=150)
+    body_cacher = models.CharField(max_length=150,null=True, blank=True)
+    categorie = models.ForeignKey(Categorie, null=True, blank=True)
+    photo = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    api_fields = ['sellphotos','body','photo','photo_url', 'categorie','body_cacher']
+    
+
+    content_panels = Page.content_panels + [
+        FieldPanel('categorie'),
+        FieldPanel('body'),
+        FieldPanel('body_cacher'),
+        FieldPanel('photo'),
+        InlinePanel('sellphotos', label="Photos"),
+    ]
+
+    @property
+    def photo_url(self):
+        if self.photo:
+            return settings.MEDIA_URL + 'original_images/' + self.photo.filename
+
+
+class SellPhoto(Orderable):
+    page = ParentalKey(SellPage, related_name='sellphotos')
+    prix = models.CharField(max_length=50,null=True, blank=True)
+    nom = models.CharField(max_length=100,null=True, blank=True)
+    photo = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    api_fields = ['photo', 'photo_url','prix','nom']
+
+    panels = [
+        FieldPanel('photo'),
+        FieldPanel('nom'),
+        FieldPanel('prix'),
     ]
 
     @property

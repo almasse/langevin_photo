@@ -210,3 +210,70 @@ function nextAlbum(currentid, way){
         }
     });
 }
+
+
+
+function initTarif(){
+    var tarifpageids = [];
+    var tarif = 0 ;
+    $.getJSON("http://localhost:8000/api/v2/pages/?format=json", function (data) {
+        
+        for (var key in data.items){
+            if (data.items[key].meta.type == "langevin_photo.TarifPage"){
+                tarifpageids.push(data.items[key].id);
+            }
+        }
+        tarifpageids.sort(function(a,b){
+            return b-a;
+        });
+        for (var id in tarifpageids){
+            tarif = tarifpageids[id];
+            break;
+        }
+
+        $.getJSON("http://localhost:8000/api/v2/pages/"+tarif+"/?format=json", function (page_data) {
+
+            var template = $('#template-tarif').html();
+            var rendered = Mustache.render(template, page_data);
+            $('#tarif').html(rendered);
+
+            $('#tariftitle').text(page_data.title)
+
+        });
+
+    });
+}
+
+function initAlbumSell(id){
+    var sellpageids = [];
+    var sell = 0 ;
+    $.getJSON("http://localhost:8000/api/v2/pages/?format=json", function (data) {
+        
+        for (var key in data.items){
+            if (data.items[key].meta.type == "langevin_photo.SellPage"){
+                sellpageids.push(data.items[key].id);
+            }
+        }
+        sellpageids.sort(function(a,b){
+            return b-a;
+        });
+        for (var id in sellpageids){
+            sell = sellpageids[id];
+            break;
+        }
+
+    	$.getJSON("http://localhost:8000/api/v2/pages/"+sell+"/?format=json", function (page_data) {
+
+			$('#albumtitle').text(page_data.title);
+			$('#bodynothidden').text(page_data.body);
+			$('#bodyhidden').text(page_data.body_cacher);
+
+			for (var key in page_data.sellphotos){
+				var template = $('#template-albumdetail').html();
+        		var rendered = Mustache.render(template, page_data.sellphotos[key]);
+        		$('#gallery').append(rendered);
+
+			}
+    	});
+    });
+}
