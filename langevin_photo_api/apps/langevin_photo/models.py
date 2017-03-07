@@ -168,14 +168,24 @@ class TarifPage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+    titre_pdf = models.CharField(max_length=100,null=True,blank=True)
+    pdf = models.ForeignKey(
+        'wagtaildocs.Document',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
-    api_fields = ['body','photo','photo_url','name','quote']
+    api_fields = ['body','photo','photo_url','name','quote','titre_pdf','pdf']
 
     content_panels = Page.content_panels + [
         FieldPanel('name'),
         FieldPanel('body'),
         FieldPanel('quote'),
         FieldPanel('photo'),
+        FieldPanel('titre_pdf'),
+        FieldPanel('pdf'),
     ]
 
     @property

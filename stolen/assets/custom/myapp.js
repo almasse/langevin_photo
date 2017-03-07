@@ -233,11 +233,14 @@ function initTarif(){
 
         $.getJSON("http://localhost:8000/api/v2/pages/"+tarif+"/?format=json", function (page_data) {
 
+        	page_data.pdf.meta.download_url = page_data.pdf.meta.download_url.replace('localhost','localhost:8000');
+
             var template = $('#template-tarif').html();
             var rendered = Mustache.render(template, page_data);
             $('#tarif').html(rendered);
 
             $('#tariftitle').text(page_data.title)
+
 
         });
 
@@ -267,6 +270,7 @@ function initAlbumSell(id){
 			$('#albumtitle').text(page_data.title);
 			$('#bodynothidden').text(page_data.body);
 			$('#bodyhidden').text(page_data.body_cacher);
+
 
 			for (var key in page_data.sellphotos){
 				var template = $('#template-albumdetail').html();
