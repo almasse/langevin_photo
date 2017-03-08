@@ -764,7 +764,8 @@
 													<!-- Begin isotope filter links -->
 													<div class="isotope-filter-links collapse navbar-collapse no-padding" id="isotope-filter-collapse">
 														<a class="active" href="#" data-filter="*">Tous</a>
-													<!--	<a href="#" data-filter=".fashion">Fashion</a>
+
+													<!--<a href="#" data-filter=".fashion">Fashion</a>
 														<a href="#" data-filter=".portraits">Portraits</a>
 														<a href="#" data-filter=".black-and-white">Black &amp; White</a>
 														<a href="#" data-filter=".outdoor">Outdoor</a> -->
@@ -776,15 +777,15 @@
 												
 											</div> <!-- /.col -->
 
-											<div class="col-md-4">
+										<!--	<div class="col-md-4">
 
-												<!-- Begin album attributes -->
+												<!-- Begin album attributes 
 												<ul class="album-attributes margin-top-30 hide-from-md">
 
 													<!-- Begin show items on page
 													==============================
 													* Use class "options-dark" to enable dark dropdown menu.
-													-->
+													
 													<li><form class="form-inline show-on-page">
 														<div class="form-group">
 															<label for="show-items">Show:</label>
@@ -796,12 +797,12 @@
 															</select>
 														</div>
 													</form></li>
-													<!-- End show items on page -->
+													<!-- End show items on page 
 													
 												</ul>
-												<!-- End album attributes -->
+												<!-- End album attributes 
 
-											</div> <!-- /.col -->
+											</div> --><!-- /.col -->
 										</div> <!-- /.row -->
 
 									</div>
@@ -882,7 +883,7 @@
 									</div>
 									<!-- End isotope items wrap -->
 				<script id="template-albums-list" type="x-tmpl-mustache">
-										<div id="item-album{{id}}" class="isotope-item">
+										<div id="item-album{{id}}" class="isotope-item" >
 
 											<!-- Begin album list item -->
 											<div class="album-list-item">
@@ -1054,17 +1055,19 @@
 		<script src="assets/js/owl.carousel.plugins.js"></script> <!-- Owl Carousel plugins JS (http://www.owlcarousel.owlgraphic.com) -->
 
 		<!-- Theme master JS -->
-		<script src="assets/js/theme.js"></script>
+		<script src="assets/js/theme.js" defer></script>
 
 
         <script src="assets/custom/parsley.min.js"></script>
         <script src="assets/custom/mustache.min.js"></script>
         <script src="assets/custom/myapp.js"></script>
 <script>
-$(document).ready(function () {
-	initAlbumList();
-});
+//$( document ).ready(function() {
+initAlbumList();
+//});
 </script>
+
+
 
 		<!--==============================
 		///// Begin Google Analytics /////

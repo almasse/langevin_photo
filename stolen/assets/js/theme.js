@@ -366,6 +366,7 @@
 	// Note-2: "lazysizes" blugin is recommended: https://github.com/aFarkas/lazysizes
 	// =====================================================================================
 
+function INITISOTOPE(){
 	// init Isotope
 	var $container = $('.isotope-items-wrap');
 	$container.imagesLoaded(function() {
@@ -377,6 +378,7 @@
 	   }
 	 });
 	});
+
 
 	// Filter
 	$('.isotope-filter-links a').on("click",function(){
@@ -401,7 +403,7 @@
 	$(".isotope").each(function(){
 	   $('body').css( 'overflow-y', 'scroll');
 	});
-
+}
 
 
 	// =====================================================

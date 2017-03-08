@@ -13,7 +13,6 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 
-
 function initAlbumList(){
 
 	
@@ -38,33 +37,47 @@ function initAlbumList(){
                 	albums.push(pages.items[key].id);
             	}
         	}
-
         	//render pictures list
+        	var requestnum = albums.length;
+        	var answers = 0;
         	for (var ids in albums){
-            	$.getJSON("http://localhost:8000/api/v2/pages/"+albums[ids]+"/?format=json", function(page){
-                	var template = $('#template-albums-list').html();
-                	var rendered = Mustache.render(template, page);
-                	$('#albums-list').append(rendered);
+        		$.when(
+            		$.getJSON("http://localhost:8000/api/v2/pages/"+albums[ids]+"/?format=json", function(page){
+                		var template = $('#template-albums-list').html();
+                		var rendered = Mustache.render(template, page);
+                		$('#albums-list').append(rendered);
 
 
                 	//link images
-                	for (var photo in page.photos){
-                		$('#photoid'+page.id).attr("src","http://localhost:8000"+page.photos[photo].photo_url);
-                		break;
-                	}
-
-                	//ajout categorie in album class
-                	for (var check in page_data.categories){
-                		if (page.categorie.id == page_data.categories[check].id){
-                			$('#item-album'+page.id).addClass(page_data.categories[check].nom_categorie.toLowerCase());
+                		for (var photo in page.photos){
+                			$('#photoid'+page.id).attr("src","http://localhost:8000"+page.photos[photo].photo_url);
                 			break;
                 		}
-                	}
+                	//ajout categorie in album class
+                		for (var check in page_data.categories){
+                			if (page.categorie.id == page_data.categories[check].id){
+                				$('#item-album'+page.id).addClass(page_data.categories[check].nom_categorie.toLowerCase());
+                				break;
+                			}
+                		}
+            		})
+            	).done(function(){// attend que toute les reponse des ajax soit effectuer
+            		answers = answers + 1;
+        			if(answers == requestnum){
+						INITISOTOPE();//voir dans theme.js normalement pas dans une fonction (ne peut etre caller plus d une fois)
+					}
             	});
         	}
     	});
+    	/*setTimeout(function(){ 
+			INITISOTOPE();
+    	}, 2000);*/
     });
 }
+
+
+
+
 
 function initAlbumDetail(id){
 
