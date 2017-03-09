@@ -14,7 +14,6 @@ var getUrlParameter = function getUrlParameter(sParam) {
 };
 
 function initAlbumList(selectpage){
-
 	
 	// all
     $.getJSON("http://localhost:8000/api/v2/pages/10/?format=json", function (page_data) {
@@ -35,8 +34,10 @@ function initAlbumList(selectpage){
     		for (var key in pages.items){
                 albums.push(pages.items[key].id);
         	}
+
+
         	//render pictures list
-        	var requestnum = albums.length;
+        	var requestnum = albums.length; //nombre album
         	var answers = 0;
         	for (var ids in albums){
         		$.when(
@@ -139,8 +140,9 @@ function initAlbumDetail(id, page){
 			}
 			$('#paginator').append(li);
 		}
-		$('#paginator').append('<li><a id="lastpage" href="album-detail.html?code='+id+'&page='+totalpages+'" aria-label="Next"><span aria-hidden="true">Dernière page</span></a></li>');
-
+        if(totalpages>1){
+            $('#paginator').append('<li><a id="lastpage" href="album-detail.html?code='+id+'&page='+totalpages+'" aria-label="Next"><span aria-hidden="true">Dernière page</span></a></li>');
+        }
 
 			// render image
 		var checklimit = 0;
