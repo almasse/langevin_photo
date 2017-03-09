@@ -273,22 +273,25 @@
 
 				<!-- Begin page header info -->
 				<div class="container-fluid page-header-content no-padding">
-					<div class="row">
+					<div class="row" id="galleryhead">
+
+					</div> <!-- /.row -->
+				<script id="template-albumdetailhead" type="x-tmpl-mustache">
 						<div class="col-md-4">
 
-							<h1 id="albumtitle" class="album-title">Beauty &amp; Fashion</h1>
+							<h1 id="albumtitle" class="album-title">{{title}}</h1>
 
 							<!-- Begin album meta -->
 							<div class="album-meta">
-								<span class="photos-count">167 Photos</span> /
-								<span class="photos-views">68 Views</span>
+								<span id="photocount" class="photos-count">167 Photos</span> /
+								<span class="photos-views"></span>
 							</div>
 							<!-- End album meta -->
 
 							<!-- Begin author -->
 							<div class="author">
 								<a href="#" class="author-avatar bg-image" style="background-image: url(assets/img/author.jpg); background-position: 50% 50%;"></a>
-								<a href="" class="author-info">- by: John Smith</a>
+								<a href="" class="author-info"></a>
 							</div>
 							<!-- End author -->
 
@@ -299,11 +302,11 @@
 							<!-- Begin album description -->
 							<div class="album-description">
 								<div class="al-desc-inner" >
-									<p id="bodynothidden">Suspendisse metus urna, faucibus nec ex et, suscipit blandit turpis. Suspendisse maximus sodales sem aliquet vehicula. Vivamus augue felis, finibus ut augue in, condimentum malesuada metus navesis.</p>
+									<p id="bodynothidden">{{{body}}}</p>
 
 									<!-- Begin description toggle (hidden by default) -->
 									<div class="al-desc-toggle">
-										<p id="bodyhidden">Praesent ultricies interdum augue sit amet tempor. Maecenas at ultricies arcu. Sed lacinia vulputate nulla, a sollicitudin turpis varius quis. Pellentesque vulputate pellentesque.</p>
+										<p id="bodyhidden">{{{body_cacher}}}</p>
 									</div>
 									<!-- End description toggle -->
 								</div>
@@ -319,53 +322,7 @@
 
 						</div> <!-- /.col -->
 
-						<div class="col-md-4">
-
-							<!-- Begin album nav 
-							===================== 
-							<div class="album-nav">
-
-								<!-- Begin album nav item 
-								<a id="prevbutton" href="" class="an-item prev-album bg-image" style="background-image: url(assets/img/album-list/grid/img-2.jpg); background-position: 50% 50%;" title="Previous album">
-									<!-- Element cover 
-									<div class="cover"></div>
-
-									<div class="an-item-info">
-										<span class="an-icon"><i class="fa fa-chevron-left"></i></span>
-										<span class="an-text">Prev</span>
-									</div>
-								</a>
-								<!-- End album nav item 
-
-								<!-- Begin album nav item 
-								<a href="portfolio.html" class="an-item to-album-list bg-image" style="background-image: url(assets/img/album-list/grid/img-4.jpg); background-position: 50% 50%;" title="Back to album list">
-									<!-- Element cover 
-									<div class="cover"></div>
-
-									<div class="an-item-info">
-										<span class="an-icon"><i class="fa fa-th-list"></i></span>
-										<span class="an-text">List</span>
-									</div>
-								</a>
-								<!-- End album nav item 
-
-								<!-- Begin album nav item 
-								<a id="nextbutton" href="" class="an-item next-album bg-image" style="background-image: url(assets/img/album-list/grid/img-7.jpg); background-position: 50% 50%;" title="Next album">
-									<!-- Element cover 
-									<div class="cover"></div>
-
-									<div class="an-item-info">
-										<span class="an-icon"><i class="fa fa-chevron-right"></i></span>
-										<span class="an-text">Next</span>
-									</div>
-								</a>
-								<!-- End album nav item 
-
-							</div>
-							<!-- End album nav -->
-
-						</div> <!-- /.col -->
-					</div> <!-- /.row -->
+                </script>
 				</div> 
 				<!-- End page header info -->
 

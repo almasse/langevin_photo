@@ -116,17 +116,19 @@ function initAlbumDetail(id, page){
 	}
 
     $.getJSON(url, function (page_data) {
-		$('#albumtitle').text(page_data.title);
-		$('#bodynothidden').text(page_data.body);
-		$('#bodyhidden').text(page_data.body_cacher);
-		$('#nextbutton').attr('href','album-detail.html?code='+id+'&way=next');
-		$('#prevbutton').attr('href','album-detail.html?code='+id+'&way=prev');
+
+
+		var template = $('#template-albumdetailhead').html();
+        var rendered = Mustache.render(template, page_data);
+        $('#galleryhead').html(rendered);
+
 		$('#downnextbutton').attr('href','album-detail.html?code='+id+'&way=next');
 		$('#downprevbutton').attr('href','album-detail.html?code='+id+'&way=prev');
 		$('#firstpage').attr('href','album-detail.html?code='+id+'&page=1');
 
 
 		var albumlength = page_data.photos.length;
+		$('#photocount').text(albumlength+' Photos');
 		var totalpages = Math.ceil(albumlength/limit);
 		$('#pageinfo').text("Page "+page+" de "+totalpages);
 
@@ -374,13 +376,14 @@ function initAlbumSell(page){
 
     	$.getJSON("http://localhost:8000/api/v2/pages/"+sell+"/?format=json", function (page_data) {
 
-			$('#albumtitle').text(page_data.title);
-			$('#bodynothidden').text(page_data.body);
-			$('#bodyhidden').text(page_data.body_cacher);
+			var template = $('#template-albumdetailhead').html();
+        	var rendered = Mustache.render(template, page_data);
+        	$('#galleryhead').html(rendered);
 
             $('#firstpage').attr('href','sell-album.html?page=1');
 
 			var albumlength = page_data.sellphotos.length;
+			$('#photocount').text(albumlength+' Photos');
 			var totalpages = Math.ceil(albumlength/limit);
 			$('#pageinfo').text("Page "+page+" de "+totalpages);
 
