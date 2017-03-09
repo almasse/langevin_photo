@@ -206,10 +206,18 @@ function initAbout(){
     });
 }
 
-function initQuad(){
+function initQuad(page){
+
+	if (readCookie("limit")){
+		limit = readCookie("limit");
+		$('#selectshow-items').val(limit);
+	}else{
+		limit = 12;
+	}
+
     var quadpageids = [];
     var quad = 0 ;
-    $.getJSON("http://localhost:8000/api/v2/pages/?format=json", function (data) {
+    $.getJSON("http://localhost:8000/api/v2/pages/?format=json", function (data) { //get last quadpage
         
         for (var key in data.items){
             if (data.items[key].meta.type == "langevin_photo.QuadPage"){
@@ -231,11 +239,40 @@ function initQuad(){
             $('#quad').html(rendered);
 
             $('#quadtitle').text(page_data.title)
+            $('#firstpage').attr('href','quadnet.html?page=1');
 
-			for (var key in page_data.quadphotos){
+			var albumlength = page_data.quadphotos.length;
+			var totalpages = Math.ceil(albumlength/limit);
+			$('#pageinfo').text("Page "+page+" de "+totalpages);
+
+			//render paginator 
+			for (var paging=0; paging < totalpages; paging++){
+				pageid = paging + 1;
+				if(paging+1 == page){
+					var li = $('<li class="active"><a href="quadnet.html?page='+pageid+'">'+pageid+'</a></li>');
+				}else{
+					var li = $('<li><a href="quadnet.html?page='+pageid+'">'+pageid+'</a></li>');
+				}
+				$('#paginator').append(li);
+			}
+        	if(totalpages>1){
+            	$('#paginator').append('<li><a id="lastpage" href="quadnet.html?page='+totalpages+'" aria-label="Next"><span aria-hidden="true">Dernière page</span></a></li>');
+        	}
+
+
+			var checklimit = 0;
+			var startkey = page*limit - limit;// defini la key de depart
+			for (var photo in page_data.quadphotos){
+				key=startkey +checklimit;
+
 				var template = $('#template-albumdetail').html();
         		var rendered = Mustache.render(template, page_data.quadphotos[key]);
         		$('#gallery').append(rendered);
+
+        		checklimit = checklimit +1 ;
+        		if (checklimit == limit || key == albumlength-1){// defini la fin de la loop selon la limit
+        			break;
+        		}
 
 			}
 
