@@ -508,7 +508,7 @@ function INITISOTOPE(){
 	// =============================================================================================
 
 	// Iterate over each select element
-	$('select').each(function () {
+/*	$('select').each(function () {
 
 		// Cache the number of options
 		var $this = $(this),
@@ -561,7 +561,7 @@ function INITISOTOPE(){
 		  $styledSelect.text($(this).text()).removeClass('active');
 		  $this.val($(this).attr('rel'));
 		  $list.hide();
-		  /* alert($this.val()); Uncomment this for demonstration! */
+		  /* alert($this.val()); Uncomment this for demonstration! 
 		});
 
 		// Hides the unordered list when clicking outside of it
@@ -570,7 +570,7 @@ function INITISOTOPE(){
 		  $list.hide();
 		});
 
-	});
+	});*/
 
 
 

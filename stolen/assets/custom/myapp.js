@@ -13,7 +13,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 
-function initAlbumList(){
+function initAlbumList(selectpage){
 
 	
 	// all
@@ -70,18 +70,51 @@ function initAlbumList(){
     });
 }
 
-function getval(limit){
-	Cookies.set("limit",limit);
-	console.log("SET COOKIE");
+function createCookie(name,value,days) {
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
 }
 
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
 
-function initAlbumDetail(id){
+function eraseCookie(name) {
+	createCookie(name,"",-1);
+}
+
+function getval(limit){ //changement de limit
+	createCookie("limit",limit);
+	var url = window.location.href; 
+	if (getUrlParameter('page')){
+		page = getUrlParameter('page');
+		url = url.replace('page='+page,'page=1');
+	}
+	window.location.href = url;
+}
+
+function initAlbumDetail(id, page){
 	var url = "http://localhost:8000/api/v2/pages/"+id+"/?format=json";
+	if (readCookie("limit")){
+		limit = readCookie("limit");
+		$('#selectshow-items').val(limit);
+	}else{
+		limit = 12;
+	}
 
-	console.log(url);
     $.getJSON(url, function (page_data) {
-
 		$('#albumtitle').text(page_data.title);
 		$('#bodynothidden').text(page_data.body);
 		$('#bodyhidden').text(page_data.body_cacher);
@@ -89,17 +122,40 @@ function initAlbumDetail(id){
 		$('#prevbutton').attr('href','album-detail.html?code='+id+'&way=prev');
 		$('#downnextbutton').attr('href','album-detail.html?code='+id+'&way=next');
 		$('#downprevbutton').attr('href','album-detail.html?code='+id+'&way=prev');
-/*		$('#filter12item').attr('value','album-detail.html?code='+id+'&limit=12');
-		$('#filter24item').attr('value','album-detail.html?code='+id+'&limit=24');
-		$('#filter48item').attr('value','album-detail.html?code='+id+'&limit=48');
-		$('#filterallitem').attr('value','album-detail.html?code='+id);
-*/
+		$('#firstpage').attr('href','album-detail.html?code='+id+'&page=1');
 
-		for (var key in page_data.photos){
+
+		var albumlength = page_data.photos.length;
+		var totalpages = Math.ceil(albumlength/limit);
+		$('#pageinfo').text("Page "+page+" de "+totalpages);
+
+		//render paginator 
+		for (var paging=0; paging < totalpages; paging++){
+			pageid = paging + 1;
+			if(paging+1 == page){
+				var li = $('<li class="active"><a href="album-detail.html?code='+id+'&page='+pageid+'">'+pageid+'</a></li>');
+			}else{
+				var li = $('<li><a href="album-detail.html?code='+id+'&page='+pageid+'">'+pageid+'</a></li>');
+			}
+			$('#paginator').append(li);
+		}
+		$('#paginator').append('<li><a id="lastpage" href="album-detail.html?code='+id+'&page='+totalpages+'" aria-label="Next"><span aria-hidden="true">Dernière page</span></a></li>');
+
+
+			// render image
+		var checklimit = 0;
+		var startkey = page*limit - limit;// defini la key de depart
+		for (var photo in page_data.photos){
+			key=startkey +checklimit;
+
 			var template = $('#template-albumdetail').html();
         	var rendered = Mustache.render(template, page_data.photos[key]);
         	$('#gallery').append(rendered);
 
+        	checklimit = checklimit +1 ;
+        	if (checklimit == limit || key == albumlength-1){// defini la fin de la loop selon la limit
+        		break;
+        	}
 		}
     });
 }
@@ -216,11 +272,11 @@ function nextAlbum(currentid, way){
         }
         if (way == 'next'){
         	var next = closestHigh(albums, currentid);
-        	initAlbumDetail(next);
+        	initAlbumDetail(next,1);
         }
         if (way == 'prev'){
         	var prev = closestDown(albums, currentid);
-        	initAlbumDetail(prev);
+        	initAlbumDetail(prev,1);
         }
     });
 }

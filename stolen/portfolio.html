@@ -777,32 +777,32 @@
 												
 											</div> <!-- /.col -->
 
-										<!--	<div class="col-md-4">
+											<div class="col-md-4">
 
-												<!-- Begin album attributes 
+												<!-- Begin album attributes -->
 												<ul class="album-attributes margin-top-30 hide-from-md">
 
 													<!-- Begin show items on page
 													==============================
-													* Use class "options-dark" to enable dark dropdown menu.
+													* Use class "options-dark" to enable dark dropdown menu.-->
 													
 													<li><form class="form-inline show-on-page">
 														<div class="form-group">
-															<label for="show-items">Show:</label>
-															<select id="show-items" class="select-styled">
-																<option value="show-15-items">15 items</option>
-																<option value="show-25-items">25 items</option>
-																<option value="show-50-items">50 items</option>
-																<option value="show-all-items">Show All</option>
-															</select>
+															<label for="show-items">Afficher :</label>
+																<select onchange="getval(this.value);" id="selectshow-items" class="select-styled"> <!-- voir theme.js lign 560 environ -->
+																	<option id="filter12item" value="12">12 Photos</option>
+																	<option id="filter24item" value="24">24 Photos</option>
+																	<option id="filter48item" value="48">48 Photos</option>
+																	<option id="filterallitem" value="800">Toute</option>
+																</select>
 														</div>
 													</form></li>
-													<!-- End show items on page 
+													<!-- End show items on page -->
 													
 												</ul>
-												<!-- End album attributes 
+												<!-- End album attributes -->
 
-											</div> --><!-- /.col -->
+											</div> <!-- /.col -->
 										</div> <!-- /.row -->
 
 									</div>
@@ -824,61 +824,6 @@
 
 										<!-- Grid sizer (do not remove!!!) -->
 										<div class="grid-sizer"></div>
-
-
-										<!-- //////////////////
-										// Begin isotope item. Note: use class "width2" for alternative item width (works best on first item)
-										/////////////////////// 
-										<div class="isotope-item fashion">
-
-											<!-- Begin album list item
-											<div class="album-list-item">
-												<a class="ali-link" href="album-single-grid-4col.html">
-													<div class="ali-img-wrap">
-														<img class="ali-img" src="assets/img/album-list/grid/img-1.jpg" alt="image">
-													</div>
-													<div class="ali-caption">
-														<h2 class="ali-title">Paris Fashion Week</h2>
-														<div class="ali-meta">15 photos · 134 views</div>
-													</div>
-												</a>
-												<a href="#0" class="album-share" title="Share this album" data-toggle="modal" data-target="#modal-45776355">
-													<i class="fa fa-share-alt"></i>
-												</a>
-
-												<!-- Begin album share modal 
-												<div id="modal-45776355" class="modal fade" tabindex="-1" role="dialog">
-													<div class="modal-dialog modal-center">
-														<div class="modal-content">
-															<div class="modal-header">
-																<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-																<h4 class="modal-title">Share to:</h4>
-															</div>
-															<div class="modal-body text-center">
-																<!-- Begin modal share 
-																<div class="modal-share">
-																	<ul>
-																		<li><a href="#0" class="btn btn-social-min btn-facebook btn-rounded-full"><i class="fa fa-facebook"></i></a></li>
-																		<li><a href="#0" class="btn btn-social-min btn-twitter btn-rounded-full"><i class="fa fa-twitter"></i></a></li>
-																		<li><a href="#0" class="btn btn-social-min btn-google btn-rounded-full"><i class="fa fa-google-plus"></i></a></li>
-																		<li><a href="#0" class="btn btn-social-min btn-pinterest btn-rounded-full"><i class="fa fa-pinterest"></i></a></li>
-																		<li><a href="#0" class="btn btn-social-min btn-instagram btn-rounded-full"><i class="fa fa-instagram"></i></a></li>
-																	</ul>
-																	<input class="grab-link" type="text" readonly="" value="https://your-site.com/your-album-link" onclick="this.select()">
-																</div>
-																<!-- End modal share 
-															</div>
-														</div><!-- /.modal-content 
-													</div><!-- /.modal-dialog 
-												</div>
-												<!-- End album share modal 
-
-											</div>
-											<!-- End album list item 
-
-										</div>
-										<!-- End isotope item -->
-
 
 									</div>
 									<!-- End isotope items wrap -->
@@ -939,50 +884,37 @@
 							<!-- End content wrap -->
 							
 						</div> <!-- /.col -->
-					</div> <!-- /.row 
+					</div> <!-- /.row -->
 
 					<div class="row">
+					
 						<div class="col-md-8">
 
-							<!-- Begin pagination 
+							<!-- Begin pagination -->
 							<nav class="pagination-wrap">
-								<ul class="pagination">
+								<ul class="pagination" id="paginator">
 									<li>
-										<a href="" aria-label="Previous">
-											<span aria-hidden="true">First</span>
-										</a>
-									</li>
-									<li><a href="">Prev</a></li>
-									<li class="active"><a href="#0">1</a></li>
-									<li><a href="">2</a></li>
-									<li><a href="">3</a></li>
-									<li><a href="#0">...</a></li>
-									<li><a href="">6</a></li>
-									<li><a href="">7</a></li>
-									<li><a href="">8</a></li>
-									<li><a href="">Next</a></li>
-									<li>
-										<a href="" aria-label="Next">
-											<span aria-hidden="true">Last</span>
+										<a id="firstpage" href="" aria-label="Previous">
+											<span aria-hidden="true">Première page</span>
 										</a>
 									</li>
 								</ul>
 							</nav>
-							<!-- End pagination 
-
-						</div> <!-- /.col 
+							<!-- End pagination -->
+						</div> <!-- /.col -->
 
 						<div class="col-md-4">
 
-							<!-- Begin pagination info 
+							<!-- Begin pagination info -->
 							<div class="pagination-info ">
-								<span>Showing page 1 of 8</span>
-								<span>Albums 1 - 12 of 94</span>
+								<span id="pageinfo"></span>
+								<!--<span>Images 1 - 16 of 167</span>-->
 							</div>
-							<!-- End pagination info 
+							<!-- End pagination info -->
 
-						</div> <!-- /.col 
+						</div> <!-- /.col -->
 					</div> <!-- /.row -->
+					
 
 				</div> <!-- /.container -->
 			</section>
@@ -1061,11 +993,13 @@
         <script src="assets/custom/parsley.min.js"></script>
         <script src="assets/custom/mustache.min.js"></script>
         <script src="assets/custom/myapp.js"></script>
-<script>
-//$( document ).ready(function() {
-initAlbumList();
-//});
-</script>
+	<script>
+  		if(getUrlParameter('page')){
+  			initAlbumList(getUrlParameter('page'));
+  		}else{
+  			initAlbumList(1);
+  		}
+	</script>
 
 
 
