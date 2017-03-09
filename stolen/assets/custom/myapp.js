@@ -169,9 +169,7 @@ function initIndex(){
         var rendered = Mustache.render(template, page_data);
         $('#presentation').html(rendered);
         $('#intro-section').css("background-image", "url(http://localhost:8000"+page_data.photo_background_url+")");
-
     });
-
 }
 
 
@@ -200,9 +198,7 @@ function initAbout(){
             $('#about').html(rendered);
 
             $('#abouttitle').text(page_data.title)
-
         });
-
     });
 }
 
@@ -273,11 +269,8 @@ function initQuad(page){
         		if (checklimit == limit || key == albumlength-1){// defini la fin de la loop selon la limit
         			break;
         		}
-
 			}
-
         });
-
     });
 }
 
@@ -349,14 +342,19 @@ function initTarif(){
             $('#tarif').html(rendered);
 
             $('#tariftitle').text(page_data.title)
-
-
         });
-
     });
 }
 
-function initAlbumSell(id){
+function initAlbumSell(page){
+	if (readCookie("limit")){
+		limit = readCookie("limit");
+		$('#selectshow-items').val(limit);
+	}else{
+		limit = 12;
+	}
+
+
     var sellpageids = [];
     var sell = 0 ;
     $.getJSON("http://localhost:8000/api/v2/pages/?format=json", function (data) {
@@ -380,12 +378,40 @@ function initAlbumSell(id){
 			$('#bodynothidden').text(page_data.body);
 			$('#bodyhidden').text(page_data.body_cacher);
 
+            $('#firstpage').attr('href','sell-album.html?page=1');
 
+			var albumlength = page_data.sellphotos.length;
+			var totalpages = Math.ceil(albumlength/limit);
+			$('#pageinfo').text("Page "+page+" de "+totalpages);
+
+			//render paginator 
+			for (var paging=0; paging < totalpages; paging++){
+				pageid = paging + 1;
+				if(paging+1 == page){
+					var li = $('<li class="active"><a href="sell-album.html?page='+pageid+'">'+pageid+'</a></li>');
+				}else{
+					var li = $('<li><a href="sell-album.html?page='+pageid+'">'+pageid+'</a></li>');
+				}
+				$('#paginator').append(li);
+			}
+        	if(totalpages>1){
+            	$('#paginator').append('<li><a id="lastpage" href="sell-album.html?page='+totalpages+'" aria-label="Next"><span aria-hidden="true">Dernière page</span></a></li>');
+        	}
+
+
+			var checklimit = 0;
+			var startkey = page*limit - limit;// defini la key de depart
 			for (var key in page_data.sellphotos){
+				key=startkey +checklimit;
+
 				var template = $('#template-albumdetail').html();
         		var rendered = Mustache.render(template, page_data.sellphotos[key]);
         		$('#gallery').append(rendered);
 
+        		checklimit = checklimit +1 ;
+        		if (checklimit == limit || key == albumlength-1){// defini la fin de la loop selon la limit
+        			break;
+        		}
 			}
     	});
     });

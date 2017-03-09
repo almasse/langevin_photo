@@ -418,12 +418,12 @@
 													<li class="hide-from-md">
 														<form class="form-inline show-on-page margin-right-15">
 															<div class="form-group">
-																<label for="show-items">Show:</label>
-																<select id="show-items" class="select-styled">
-																	<option value="show-15-items">15 items</option>
-																	<option value="show-25-items">25 items</option>
-																	<option value="show-50-items">50 items</option>
-																	<option value="show-all-items">Show All</option>
+																<label >Afficher:</label>
+																<select onchange="getval(this.value);" id="selectshow-items" class="select-styled"> <!-- voir theme.js lign 560 environ -->
+																	<option id="filter12item" value="12">12 Photos</option>
+																	<option id="filter24item" value="24">24 Photos</option>
+																	<option id="filter48item" value="48">48 Photos</option>
+																	<option id="filterallitem" value="800">Toute</option>
 																</select>
 															</div>
 														</form>
@@ -556,63 +556,32 @@
 						</div> <!-- /.col -->
 					</div> <!-- /.row -->
 
-					<!-- Begin album bottom nav 
-					<div class="album-bottom-nav">
-						<div class="abn-item prev-album">
-							<a id="downprevbutton" href="" title="Previous album">
-								<span class="abn-icon"><i class="fa fa-chevron-left"></i></span>
-								<span class="abn-text">Prev<span class="hide-from-xs">ious</span> Album</span>
-							</a>
-						</div>
-						<div class="abn-item next-album">
-							<a id="downnextbutton" href="" title="Next album">
-								<span class="abn-text">Next Album</span>
-								<span class="abn-icon"><i class="fa fa-chevron-right"></i></span>
-							</a>
-						</div>
-					</div>
-					<!-- End album bottom nav 
-
-					<div class="row">
+										<div class="row">
 						<div class="col-md-8">
 
-							<!-- Begin pagination 
+							<!-- Begin pagination -->
 							<nav class="pagination-wrap">
-								<ul class="pagination">
+								<ul class="pagination" id="paginator">
 									<li>
-										<a href="" aria-label="Previous">
-											<span aria-hidden="true">First</span>
-										</a>
-									</li>
-									<li><a href="">Prev</a></li>
-									<li class="active"><a href="#0">1</a></li>
-									<li><a href="">2</a></li>
-									<li><a href="">3</a></li>
-									<li><a href="#0">...</a></li>
-									<li><a href="">6</a></li>
-									<li><a href="">7</a></li>
-									<li><a href="">8</a></li>
-									<li><a href="">Next</a></li>
-									<li>
-										<a href="" aria-label="Next">
-											<span aria-hidden="true">Last</span>
+										<a id="firstpage" href="" aria-label="Previous">
+											<span aria-hidden="true">Première page</span>
 										</a>
 									</li>
 								</ul>
 							</nav>
-							<!-- End pagination 
-						</div> <!-- /.col 
+							<!-- End pagination -->
+						</div> <!-- /.col -->
 
 						<div class="col-md-4">
 
-							<!-- Begin pagination info 
+							<!-- Begin pagination info -->
 							<div class="pagination-info ">
-								<span>Showing page 1 of 12</span>
-								<span>Images 1 - 16 of 167</span>
+								<span id="pageinfo"></span>
+								<!--<span>Images 1 - 16 of 167</span>-->
 							</div>
-							<!-- End pagination info 
+							<!-- End pagination info -->
 
-						</div> <!-- /.col 
+						</div> <!-- /.col -->
 					</div> <!-- /.row -->
 
 				</div> <!-- /.container -->
@@ -694,9 +663,11 @@
         <script src="assets/custom/myapp.js"></script>
 
   <script>
-$(document).ready(function () {
-    initAlbumSell();
-});
+  		if(getUrlParameter('page')){
+  			initAlbumSell(getUrlParameter('page'));
+  		}else{
+  			initAlbumSell(1);
+  		}
   </script>
 		<!--==============================
 		///// Begin Google Analytics /////
