@@ -30,12 +30,10 @@ function initAlbumList(){
 		}
 	
 		//gets albums list
-    	$.getJSON("http://localhost:8000/api/v2/pages/?format=json", function (pages) {
+    	$.getJSON("http://localhost:8000/api/v2/pages/?format=json&type=langevin_photo.AlbumPage", function (pages) {
     		var albums = [];
     		for (var key in pages.items){
-            	if (pages.items[key].meta.type == "langevin_photo.AlbumPage"){
-                	albums.push(pages.items[key].id);
-            	}
+                albums.push(pages.items[key].id);
         	}
         	//render pictures list
         	var requestnum = albums.length;
@@ -69,23 +67,21 @@ function initAlbumList(){
             	});
         	}
     	});
-    	/*setTimeout(function(){ 
-			INITISOTOPE();
-    	}, 2000);*/
     });
 }
 
-
-
+function getval(limit){
+	Cookies.set("limit",limit);
+	console.log("SET COOKIE");
+}
 
 
 function initAlbumDetail(id){
+	var url = "http://localhost:8000/api/v2/pages/"+id+"/?format=json";
 
-    $.getJSON("http://localhost:8000/api/v2/pages/"+id+"/?format=json", function (page_data) {
-      /*  var template = $('#template-albumdetail').html();
-        var rendered = Mustache.render(template, page_data);
-        $('#albumdetail').html(rendered);
-	*/
+	console.log(url);
+    $.getJSON(url, function (page_data) {
+
 		$('#albumtitle').text(page_data.title);
 		$('#bodynothidden').text(page_data.body);
 		$('#bodyhidden').text(page_data.body_cacher);
@@ -93,6 +89,11 @@ function initAlbumDetail(id){
 		$('#prevbutton').attr('href','album-detail.html?code='+id+'&way=prev');
 		$('#downnextbutton').attr('href','album-detail.html?code='+id+'&way=next');
 		$('#downprevbutton').attr('href','album-detail.html?code='+id+'&way=prev');
+/*		$('#filter12item').attr('value','album-detail.html?code='+id+'&limit=12');
+		$('#filter24item').attr('value','album-detail.html?code='+id+'&limit=24');
+		$('#filter48item').attr('value','album-detail.html?code='+id+'&limit=48');
+		$('#filterallitem').attr('value','album-detail.html?code='+id);
+*/
 
 		for (var key in page_data.photos){
 			var template = $('#template-albumdetail').html();

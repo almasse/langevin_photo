@@ -852,12 +852,12 @@
 													<li class="hide-from-md">
 														<form class="form-inline show-on-page margin-right-15">
 															<div class="form-group">
-																<label for="show-items">Show:</label>
-																<select id="show-items" class="select-styled">
-																	<option value="show-15-items">15 items</option>
-																	<option value="show-25-items">25 items</option>
-																	<option value="show-50-items">50 items</option>
-																	<option value="show-all-items">Show All</option>
+																<label >Afficher:</label>
+																<select onchange="getval(this);" id="show-items" class="select-styled">
+																	<option id="filter12item" value="12">12 Photos</option>
+																	<option id="filter24item" value="24">24 Photos</option>
+																	<option id="filter48item" value="48">48 Photos</option>
+																	<option id="filterallitem" value="800">Toute</option>
 																</select>
 															</div>
 														</form>
@@ -1103,6 +1103,7 @@
 		<!-- Core JS -->
 		<script src="assets/js/jquery-1.11.1.min.js"></script> <!-- jquery JS (https://jquery.com) -->
 		<script src="assets/js/bootstrap.min.js"></script> <!-- bootstrap JS (http://getbootstrap.com) -->
+		<script src="assets/js/js.cookie.js"></script>
 
 		<!-- Libs and Plugins JS -->
 		<script src="assets/js/lightgallery.min.js"></script> <!-- lightGallery JS (http://sachinchoolur.github.io/lightGallery) -->
@@ -1139,7 +1140,7 @@ $(document).ready(function () {
 			nextAlbum(code,'next');
   		}
   	}else{
-    	initAlbumDetail(code);
+  		initAlbumDetail(code);
 	}
 });
   </script>
